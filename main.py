@@ -10,9 +10,9 @@ from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 app = FastAPI(docs_url="/")
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./St.db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+engin = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin)
 
 Base = declarative_base()
 
@@ -39,7 +39,7 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password = Column(String)
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engin)
 
 def get_db():
     db = SessionLocal()
