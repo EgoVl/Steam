@@ -32,8 +32,6 @@ def get_db():
     finally:
         db.close()
 
-
-
 #Определение моделей данных для запросов
 class GameWithCategoryOut(BaseModel):
     name:str

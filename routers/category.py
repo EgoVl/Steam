@@ -31,7 +31,7 @@ async def get_category(category_id: int, db: Session = Depends(get_db)):
 async def update_category(category_id: int, name: str, db: Session = Depends(get_db)):
     category = db.query(Category).filter(Category.id == category_id).first()
     if not category:
-        raise HTTPException(status_code=404, detail="Категория не найдена")
+        raise HTTPException(status_code=404, detail="категория не найдена")
     category.name = name
     db.commit()
     return category

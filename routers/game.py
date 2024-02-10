@@ -24,7 +24,7 @@ async def list_games(db: Session = Depends(get_db)):
 async def update_game(game_id: int, name: str = Body(...), price: float = Body(...), category_id: int = Body(...), db: Session = Depends(get_db)):
     db_game = db.query(Game).filter(Game.id == game_id).first()
     if not db_game:
-        raise HTTPException(status_code=404, detail=f"Игра с id {game_id} не найдена")
+        raise HTTPException(status_code=404, detail=f"игра с id {game_id} не найдена")
 
     db_game.name = name
     db_game.price = price
@@ -38,8 +38,8 @@ async def update_game(game_id: int, name: str = Body(...), price: float = Body(.
 async def delete_game(game_id: int, db: Session = Depends(get_db)):
     db_game = db.query(Game).filter(Game.id == game_id).first()
     if not db_game:
-        raise HTTPException(status_code=404, detail=f"Игра с id {game_id} не найдена")
+        raise HTTPException(status_code=404, detail=f"игра с id {game_id} не найдена")
 
     db.delete(db_game)
     db.commit()
-    return {"message": f"Игра с id {game_id} была удалена"}
+    return {"message": f"игра с id {game_id} была удалена"}
